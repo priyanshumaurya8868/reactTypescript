@@ -1,19 +1,14 @@
-import "./App.css";
 import Todos from "./components/Todos";
-
-
-const DUMMY_LIST =  [
-  'Learn React',
-  'Learn Typescript',
-  'Learn NextJs'
-]
 
 function App() {
   return (
     <div className="App">
-      <Todos items={DUMMY_LIST} />
+      <Todos />
     </div>
   );
 }
+
+//.. for using css module u need add a file in ./src
+//... which is Global.d.ts
 
 export default App;
