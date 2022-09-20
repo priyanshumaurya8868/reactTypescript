@@ -1,24 +1,23 @@
-import React, { useState } from "react";
-import Todo from "../models/Todo";
+import { useContext } from "react";
+import { TodoContext } from "../context/todo-context";
+
 import { NewTodo } from "./NewTodo";
 import TodoItem from "./TodoItem";
 import Classes from "./Todos.module.css";
 
 const Todos = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  
-const onAddTodoHandler = (text: string) => {
-  setTodos((prevState) => {
-    return prevState.concat(new Todo(text));
-  });
-};
-
+  const ctx = useContext(TodoContext);
   return (
     <div>
-      <NewTodo onAddTodo={onAddTodoHandler} />
+      <NewTodo onAddTodo={ctx.addTodo} />
       <ul className={Classes.todos}>
-        {todos.map((item) => (
-          <TodoItem key={item.id} text={item.text} />
+        {ctx.todos.map((item) => (
+          <TodoItem
+            key={item.id}
+            tid={item.id}
+            text={item.text}
+            onDelete={ctx.deleteTodo}
+          />
         ))}
       </ul>
     </div>
